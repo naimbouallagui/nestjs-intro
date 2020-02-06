@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Controller, Post, Body, Get, Param} from "@nestjs/common";
-import { ProductsService } from "./products.service";
+import { ProductsService } from "../service/products.service";
 
 @Controller('products')
 export class ProductsController {
