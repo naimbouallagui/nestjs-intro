@@ -5,7 +5,7 @@ import { ProdctsModule } from './products/products.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [ProdctsModule, MongooseModule.forRoot('mongodb://localhost/nestjs-crud', {useNewUrlParser: true, useUnifiedTopology: true })],
+  imports: [ProdctsModule, MongooseModule.forRoot('mongodb://localhost/nestjs-crud', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })],
   controllers: [AppController],
   providers: [AppService],
 })

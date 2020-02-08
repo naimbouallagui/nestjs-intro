@@ -21,19 +21,20 @@ export class ProductsController {
         return await this.productsService.getSingleProduct(prodId);
     }
 
-    // @Post('update/:id')
-    // async updateProduct(
-    //     @Param('id') prodId: string, 
-    //     @Body('title') prodTitle: string, 
-    //     @Body('description') prodDesc: string, 
-    //     @Body('price') prodPrice: number
-    //     ) {
-    //         await this.productsService.updateProduct(prodId,prodTitle,prodDesc,prodPrice);
-    //         return null;
-    // }
-    // @Post(':id')
-    // async removeProduct(@Param('id') prodId: string) {
-    //     await this.productsService.deleteProduct(prodId);
-    //     return null;
-    // }
+    @Post('update/:id')
+    async updateProduct(
+        @Param('id') prodId: string, 
+        @Body('title') prodTitle: string, 
+        @Body('description') prodDesc: string, 
+        @Body('price') prodPrice: number
+        ) {
+            const data={title: prodTitle, description: prodDesc, price: prodPrice}
+            await this.productsService.updateProduct(prodId,data);
+            return null;
+    }
+    @Post(':id')
+    async removeProduct(@Param('id') prodId: string) {
+        await this.productsService.deleteProduct(prodId);
+        return null;
+    }
 }
