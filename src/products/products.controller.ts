@@ -32,9 +32,9 @@ export class ProductsController {
             await this.productsService.updateProduct(prodId,data);
             return null;
     }
-    // @Post(':id')
-    // async removeProduct(@Param('id') prodId: string) {
-    //     await this.productsService.deleteProduct(prodId);
-    //     return null;
-    // }
+    @Post(':id')
+    async removeProduct(@Param('id') prodId: string) {
+        await this.productsService.deleteProduct(prodId);
+        return null;
+    }
 }

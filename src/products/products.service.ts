@@ -23,4 +23,8 @@ export class ProductsService {
         const result = await this.productModel.findByIdAndUpdate({_id: productId}, data);
         return result;
     }
+    async deleteProduct(productId: string) {
+        const result = await this.productModel.findByIdAndDelete( productId);
+        return result;
+    }
 }
