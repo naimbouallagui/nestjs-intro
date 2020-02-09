@@ -16,6 +16,24 @@
             "outFiles": [
                 "${workspaceFolder}/dist/**/*.js"
             ]
-        }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "NestJs Program",
+            "runtimeArgs": [
+              "--nolazy",
+              "-r",
+              "ts-node/register",
+            ],
+            "args": [
+              "${workspaceFolder}/src/main.ts"
+            ],
+            "sourceMaps": true,
+            "cwd": "${workspaceFolder}",
+            "protocol": "inspector",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+          }
     ]
 }
