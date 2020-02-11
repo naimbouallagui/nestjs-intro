@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Controller, Post, Body, Get, Param} from "@nestjs/common";
+import { Controller, Post, Body, Get, Param, UseInterceptors} from "@nestjs/common";
 import { ProductsService } from "./products.service";
 import { Product } from "./product.interface";
+import { LoggingInterceptor } from "src/interceptor/logging.interceptor";
+
+
+@UseInterceptors(LoggingInterceptor)
 
 @Controller('products')
 export class ProductsController {

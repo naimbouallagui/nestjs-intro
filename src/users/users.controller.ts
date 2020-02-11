@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Controller, Post, Body, Get, Param} from "@nestjs/common";
+import { Controller, Post, Body, Get, Param, UseInterceptors} from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "./user.interface";
+import { LoggingInterceptor } from "src/interceptor/logging.interceptor";
+
+@UseInterceptors(LoggingInterceptor)
 
 @Controller('users')
 export class UsersController {

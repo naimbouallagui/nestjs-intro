@@ -28,7 +28,7 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload),
     };
-    return 'Bad Request';
+    return {message: 'Bad Request'};
   }
 }
 export const jwtConstants = {
