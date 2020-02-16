@@ -2,7 +2,7 @@
 import { Controller, Post, Body, Get, Param, UseInterceptors} from "@nestjs/common";
 import { ProductsService } from "./products.service";
 import { Product } from "./product.interface";
-import { LoggingInterceptor } from "src/interceptor/logging.interceptor";
+import { LoggingInterceptor } from "../interceptor/logging.interceptor";
 
 
 @UseInterceptors(LoggingInterceptor)
