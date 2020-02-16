@@ -23,8 +23,8 @@ export class AuthService {
 
   async login(user: any) {
 
-    const payload = { username: user.username, sub: user.id };
     const res = await this.validateUser(user.username, user.password);
+    const payload = { username: res.username, sub: res.id, roles: res.roles || ["admin"] };
     if (!res)
       throw new HttpException("Bad Request", 400);
     return {
