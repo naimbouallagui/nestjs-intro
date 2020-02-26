@@ -3,16 +3,14 @@ import { Controller, Post, Body, Get, Param, UseInterceptors, UseGuards, SetMeta
 import { UsersService } from "./users.service";
 import { User } from "./user.interface";
 import { LoggingInterceptor } from "../interceptor/logging.interceptor";
-import { RolesGuard } from "../auth/roles.guard";
 
 @UseInterceptors(LoggingInterceptor)
 
 @Controller('users')
-@UseGuards(RolesGuard)
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
     @Post()
-    @SetMetadata('roles', ['admnin'])
+    @SetMetadata('role', 'admin')
     async addUser( @Body() obj: User ):Promise<User> {
         return  await this.usersService.insertUser(obj);
     }

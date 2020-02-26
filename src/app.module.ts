@@ -7,10 +7,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { MailerModule } from './mailer/mailer.module';
-import { RolesGuard } from './auth/roles.guard';
-import { APP_GUARD } from '@nestjs/core';
+import { CommonModule } from './passport/passport.module';
 @Module({
-  imports: [ProdctsModule, UsersModule, AuthModule, MailerModule,
+  imports: [ProdctsModule, UsersModule, AuthModule, MailerModule,CommonModule,
     MongooseModule.forRoot('mongodb://localhost/nestjs-crud',
 
       { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }),
@@ -19,9 +18,6 @@ import { APP_GUARD } from '@nestjs/core';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_GUARD,
-    useClass: RolesGuard,
-  }],
+  providers: [AppService],
 })
 export class AppModule { }

@@ -8,29 +8,27 @@ export class UsersService {
 
     constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
     async insertUser(obj: User) {
-        const result = await this.userModel.create(obj);
-        return result;
+        return await this.userModel.create(obj);
     }
     async getUsers() {
-        const result = await this.userModel.find();
-        return result;
+        return await this.userModel.find();
     }
     async getSingleUser(userId: string) {
-        const result = await this.userModel.findById(userId);
-        return result;
+        return await this.userModel.findById(userId).exec();
     }
 
     async getUserByUsername(username: string) {
-        const result = await this.userModel.findOne({username:username});
-        return result;
+        return await this.userModel.findOne({username:username});
     }
 
     async updateUser(userId: string, data) {
-        const result = await this.userModel.findByIdAndUpdate({_id: userId}, data);
-        return result;
+        return await this.userModel.findByIdAndUpdate({_id: userId}, data);
     }
     async deleteUser(userId: string) {
-        const result = await this.userModel.findByIdAndDelete( userId);
-        return result;
+        return await this.userModel.findByIdAndDelete( userId);
+         
     }
+    async validateUserJWT(payload): Promise<any> {
+        return await this.userModel.findOne({username: payload.data.username}).exec();
+      }
 }

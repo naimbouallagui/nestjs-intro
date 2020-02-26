@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards, Post, Request, Body, UseInterceptors, UploadedFile, UploadedFiles, Param, Res } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from './passport/auth.guard';
 import { LoggingInterceptor } from './interceptor/logging.interceptor';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { editFileName, imageFileFilter } from './multer/multer';
@@ -11,13 +11,12 @@ import { diskStorage } from 'multer';
 export class AppController {
   constructor(private readonly authService: AuthService) { }
 
-  // @UseGuards(AuthGuard('jwt'))
   @Post('auth/login')
-  async login(@Body('username') username, @Body('password') password) {
-    return this.authService.login({ username, password });
+  async login(@Body() user) {
+    return this.authService.login(user);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt', ['admin']))
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
