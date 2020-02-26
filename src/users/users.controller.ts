@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Controller, Post, Body, Get, Param, UseInterceptors} from "@nestjs/common";
+import { Controller, Post, Body, Get, Param, UseInterceptors, UseGuards, SetMetadata} from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "./user.interface";
 import { LoggingInterceptor } from "../interceptor/logging.interceptor";
@@ -10,6 +10,7 @@ import { LoggingInterceptor } from "../interceptor/logging.interceptor";
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
     @Post()
+    @SetMetadata('role', 'admin')
     async addUser( @Body() obj: User ):Promise<User> {
         return  await this.usersService.insertUser(obj);
     }

@@ -7,8 +7,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { MailerModule } from './mailer/mailer.module';
+import { CommonModule } from './passport/passport.module';
 @Module({
-  imports: [ProdctsModule, UsersModule, AuthModule, MailerModule,
+  imports: [ProdctsModule, UsersModule, AuthModule, MailerModule,CommonModule,
     MongooseModule.forRoot('mongodb://localhost/nestjs-crud',
 
       { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }),

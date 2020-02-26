@@ -8,23 +8,18 @@ export class ProductsService {
 
     constructor(@InjectModel('Product') private readonly productModel: Model<Product>) { }
     async insertProduct(obj: Product) {
-        const result = await this.productModel.create(obj);
-        return result;
+        return await this.productModel.create(obj);
     }
     async getProducts() {
-        const result = await this.productModel.find();
-        return result;
+        return await this.productModel.find();
     }
     async getSingleProduct(productId: string) {
-        const result = await this.productModel.findById(productId);
-        return result;
+        return await this.productModel.findById(productId);
     }
     async updateProduct(productId: string, data) {
-        const result = await this.productModel.findByIdAndUpdate({_id: productId}, data);
-        return result;
+        return await this.productModel.findByIdAndUpdate({_id: productId}, data);
     }
     async deleteProduct(productId: string) {
-        const result = await this.productModel.findByIdAndDelete( productId);
-        return result;
+        return await this.productModel.findByIdAndDelete( productId);
     }
 }
