@@ -15,7 +15,7 @@ export class UsersController {
         return  await this.usersService.insertUser(obj);
     }
 
-    @Get()
+    @Get('/getAllUser')
     async getAllUsers() {
         const users = await this.usersService.getUsers();
         return users;
